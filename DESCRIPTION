@@ -1,0 +1,12 @@
+Package: HRHRpal
+Title: What the Package Does (one line, title case)
+Version: 2018.09.18
+Authors@R: person("Richard", "White", email = "RichardAubrey.White@fhi.no", role = c("aut", "cre"))
+Description: What the package does (one paragraph).
+Depends: R (>= 3.5.0)
+Suggests:
+  testthat
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1

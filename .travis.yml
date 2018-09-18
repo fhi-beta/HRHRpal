@@ -1,0 +1,12 @@
+language: r
+cache: packages
+r_packages:
+- drat
+before_install:
+- bash make.sh
+after_success:
+- test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && bash
+  deploy.sh
+env:
+  global:
+  - secure: AT0aghCbyBjzltiF8j7brXzpbYFSMGd3YhQHhXQY+r9Y6rtJdQdzYpXjvRebB75aqmjugxsXfvTXiURQo4I3WtZPvgFHjMnOeoBeuaj2xtPrsFnP8H7upaHnNrTlAbwrsoh9e1cWXcUIO6Lofez2trWDlO+FC/0l1lA3iA0VPXFUKZ3l9kfRpiZQIm7aRQ/C5oCD05vtMO8XaAGl2j47MrXJY3J0ZPgeIPk1GN7BExcWzgEu1D4TZ5VXNvrqpm19UeZ6fxTMT/r4r9qc8kMrOooF5YfOsfJq+6iVldj0on4dbRuJGX/eFvgRy2daRsX7OYzsg2J7TWb3BL8ta+7mN5DMlLuhbtZHyfiRSeAdr4sBc+wlg7+kEfwswMDHf1xi29y+SRdeLLOvQtbvLJcpMtIJO11chKN2WIpEXSrJTyqNIJs7HDXRb0xSy6iqTbYvQBEFi7FwakpIJITsNq4JIpYpmjsKrWPZLkpV0STm3jvQ/jXaVClZEDNFUzmi2aKgFYRhufAb8OlzgNMGX4nUJ5aprlMik5KwkZBRKu9QJqKMpW74EQB97sz5+IMN/pQnkGy4j3WSDtbCNczXbuW1SNOz0HnSKVr2B8fucynPV79JNeumItFrJ+nn63AyP6d0GSKrAd0OfBAOnQpvEUR90fDBdP6p/AilH/a4+6AcDCM=
