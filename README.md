@@ -1,7 +1,5 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-    ## Loading HRHRpal
-
 HRHRpal
 =======
 
@@ -30,6 +28,16 @@ print(data)
 #> 4 1001     44
 #> 5 1003     45
 #> 6 1003     46
-ProtectIdentifier(data=data,identifier = "id", seed=4)
+
+results <- ProtectIdentifier(data=data,identifier = "id", seed=4)
 #> [1] "id"     "weight"
+
+print(results)
+#>    id weight
+#> 1:  3     41
+#> 2:  3     42
+#> 3:  1     43
+#> 4:  3     44
+#> 5:  2     45
+#> 6:  2     46
 ```

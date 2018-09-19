@@ -1,11 +1,11 @@
 ---
-#output: github_document
-output: pdf_document
+output: github_document
+#output: pdf_document
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r, echo = FALSE}
+```{r message=FALSE, warning=FALSE, include=FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -44,5 +44,8 @@ data <- data.frame(id=c(
 
 ```{r example}
 print(data)
-ProtectIdentifier(data=data,identifier = "id", seed=4)
+
+results <- ProtectIdentifier(data=data,identifier = "id", seed=4)
+
+print(results)
 ```
