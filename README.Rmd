@@ -1,0 +1,48 @@
+---
+#output: github_document
+output: pdf_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+devtools::load_all()
+```
+
+# HRHRpal
+
+The goal of HRHRpal is to ...
+
+## Installation
+
+You can install HRHRpal from the Folkehelseinstituttet repository via:
+
+```{r gh-installation, eval = FALSE}
+install.packages("HRHRpal", repos="https://folkehelseinstituttet.github.io/drat/")
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r, echo = FALSE}
+data <- data.frame(id=c(
+    1001,
+    1001,
+    1002,
+    1001,
+    1003,
+    1003
+    ))
+  data$weight <- c(41,42,43,44,45,46)
+```
+
+```{r example}
+print(data)
+ProtectIdentifier(data=data,identifier = "id", seed=4)
+```

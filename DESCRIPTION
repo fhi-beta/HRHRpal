@@ -4,10 +4,12 @@ Version: 2018.09.18
 Authors@R: person("Richard", "White", email = "RichardAubrey.White@fhi.no", role = c("aut", "cre"))
 Description: What the package does (one paragraph).
 Depends: R (>= 3.5.0)
+Imports:
+  data.table
 Suggests:
   testthat,
-    knitr,
-    rmarkdown
+  knitr,
+  rmarkdown
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
