@@ -1,6 +1,7 @@
 #' ProtectIdentifier
 #' @param data The data.frame or data.table that will be protected
 #' @param identifier A character variable containing the variable name of the identifier
+#' @param seed Provide a seed for repeatable results
 #' @import data.table
 #' @export ProtectIdentifier
 ProtectIdentifier <- function(
@@ -9,7 +10,10 @@ ProtectIdentifier <- function(
   seed=as.numeric(format(Sys.time(), "%OS6"))*100000
 ){
   nam <- names(data)
-  print(nam)
+
+  if(!is.numeric(data[[identifier]])){
+    error(sprintf("%s is not numeric",identifier))
+  }
 
   if(!data.table::is.data.table(data)){
     setDT(data)
@@ -17,23 +21,27 @@ ProtectIdentifier <- function(
 
   set.seed(seed)
 
+  data[,(identifier):=as.factor(get(identifier))]
+
   uniqueids <- unique(data[[identifier]])
-  uniqueids <- data.table(id_old=uniqueids)
+  uniqueids <- data.table(old=uniqueids)
   uniqueids[,random := runif(n=.N)]
   setorder(uniqueids, random)
-  uniqueids[,xxxxx93212_newid:=1:.N]
+  uniqueids[,new:=1:.N]
   uniqueids[,random:=NULL]
+  setorder(uniqueids,old)
 
-  data[,xxxxx93212_order := 1:.N]
-  data <- merge(data,uniqueids,by.x=identifier, by.y="id_old")
-
-  setorder(data,xxxxx93212_order)
-  data[,(identifier):=xxxxx93212_newid]
-
-  data[,xxxxx93212_order:=NULL]
-  data[,xxxxx93212_newid:=NULL]
+  setattr(data[[identifier]],"levels",as.character(uniqueids$new))
+  data[,(identifier):=as.numeric(as.character(get(identifier)))]
+  uniqueids[,old:=as.numeric(as.character(old))]
 
   setcolorder(data,nam)
+  setorder(uniqueids,old)
 
-  return(data)
+  return(
+    list(
+      "key"=uniqueids,
+      "data"=data
+    )
+  )
 }

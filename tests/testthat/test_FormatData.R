@@ -18,6 +18,6 @@ test_that("Basic", {
     weight=c(41,42,43,44,45,46)
   )
 
-  testthat::expect_equal(res,expected)
+  testthat::expect_equal(res$data,expected)
 })
 

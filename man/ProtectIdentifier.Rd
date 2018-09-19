@@ -11,6 +11,8 @@ ProtectIdentifier(data, identifier, seed = as.numeric(format(Sys.time(),
 \item{data}{The data.frame or data.table that will be protected}
 
 \item{identifier}{A character variable containing the variable name of the identifier}
+
+\item{seed}{Provide a seed for repeatable results}
 }
 \description{
 ProtectIdentifier

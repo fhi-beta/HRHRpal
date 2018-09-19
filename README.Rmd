@@ -1,6 +1,8 @@
 ---
 output: github_document
 #output: pdf_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -12,6 +14,7 @@ knitr::opts_chunk$set(
   fig.path = "README-"
 )
 devtools::load_all()
+library(data.table)
 ```
 
 # HRHRpal
@@ -26,9 +29,7 @@ You can install HRHRpal from the Folkehelseinstituttet repository via:
 install.packages("HRHRpal", repos="https://folkehelseinstituttet.github.io/drat/")
 ```
 
-## Example
-
-This is a basic example which shows you how to solve a common problem:
+## ProtectIdentifier
 
 ```{r, echo = FALSE}
 data <- data.frame(id=c(
@@ -39,13 +40,49 @@ data <- data.frame(id=c(
     1003,
     1003
     ))
-  data$weight <- c(41,42,43,44,45,46)
+data$weight <- c(41,42,43,44,45,46)
+setDT(data)
 ```
 
-```{r example}
-print(data)
+This function takes a data.table (`data`) with a numerical identifier (`id`). 
 
+```{r}
+print(data)
+```
+
+We can then apply the `ProtectIdentifier` function to `data`.
+
+```{r}
 results <- ProtectIdentifier(data=data,identifier = "id", seed=4)
+```
+
+`ProtectIdentifier` works by obtaining a list of all unique values of the identifier
+
+```{r echo=FALSE}
+print(results$key[,"old"])
+```
+
+The rows are then sorted randomly:
+
+```{r echo=FALSE}
+x <- results$key
+setorder(x,new)
+print(x[,"old"])
+```
+
+The rows are then numbered:
+
+```{r echo=FALSE}
+print(x)
+```
+
+The new values are then assigned to the original dataset:
+
+```{r echo=FALSE}
+print(results$data)
+```
+
+
 
 print(results)
 ```
