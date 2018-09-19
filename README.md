@@ -66,5 +66,3 @@ The new values are then assigned to the original dataset:
     #> 4:  3     44
     #> 5:  2     45
     #> 6:  2     46
-
-print(results) \`\`\`
