@@ -11,7 +11,11 @@ Installation
 You can install HRHRpal from the Folkehelseinstituttet repository via:
 
 ``` r
-install.packages("HRHRpal", repos="https://folkehelseinstituttet.github.io/drat/")
+r <- getOption("repos")
+r["fhi"] = "https://folkehelseinstituttet.github.io/drat/"
+options(repos = r)
+
+install.packages("HRHRpal")
 ```
 
 ProtectIdentifier
@@ -33,7 +37,7 @@ print(data)
 We can then apply the `ProtectIdentifier` function to `data`.
 
 ``` r
-results <- ProtectIdentifier(data=data,identifier = "id", seed=4)
+key <- ProtectIdentifier(data=data,identifier = "id", seed=4)
 ```
 
 `ProtectIdentifier` works by obtaining a list of all unique values of the identifier
@@ -52,10 +56,10 @@ The rows are then sorted randomly:
 
 The rows are then numbered:
 
-    #>     old new
-    #> 1: 1002   1
-    #> 2: 1003   2
-    #> 3: 1001   3
+    #>     old new variableName
+    #> 1: 1002   1           id
+    #> 2: 1003   2           id
+    #> 3: 1001   3           id
 
 The new values are then assigned to the original dataset:
 

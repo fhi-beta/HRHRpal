@@ -26,7 +26,11 @@ The goal of HRHRpal is to ...
 You can install HRHRpal from the Folkehelseinstituttet repository via:
 
 ```{r gh-installation, eval = FALSE}
-install.packages("HRHRpal", repos="https://folkehelseinstituttet.github.io/drat/")
+r <- getOption("repos")
+r["fhi"] = "https://folkehelseinstituttet.github.io/drat/"
+options(repos = r)
+
+install.packages("HRHRpal")
 ```
 
 ## ProtectIdentifier
@@ -53,33 +57,32 @@ print(data)
 We can then apply the `ProtectIdentifier` function to `data`.
 
 ```{r}
-results <- ProtectIdentifier(data=data,identifier = "id", seed=4)
+key <- ProtectIdentifier(data=data,identifier = "id", seed=4)
 ```
 
 `ProtectIdentifier` works by obtaining a list of all unique values of the identifier
 
 ```{r echo=FALSE}
-print(results$key[,"old"])
+print(key[,"old"])
 ```
 
 The rows are then sorted randomly:
 
 ```{r echo=FALSE}
-x <- results$key
-setorder(x,new)
-print(x[,"old"])
+setorder(key,new)
+print(key[,"old"])
 ```
 
 The rows are then numbered:
 
 ```{r echo=FALSE}
-print(x)
+print(key)
 ```
 
 The new values are then assigned to the original dataset:
 
 ```{r echo=FALSE}
-print(results$data)
+print(data)
 ```
 
 
