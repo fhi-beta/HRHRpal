@@ -5,7 +5,8 @@ Authors@R: person("Richard", "White", email = "RichardAubrey.White@fhi.no", role
 Description: What the package does (one paragraph).
 Depends: R (>= 3.5.0)
 Imports:
-  data.table
+  data.table,
+  stringr
 Suggests:
   testthat,
   knitr,
